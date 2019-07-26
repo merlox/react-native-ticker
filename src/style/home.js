@@ -14,12 +14,6 @@ const styles = StyleSheet.create({
         top: 70,
         textAlign: 'center',
         zIndex: 1,
-        shadowColor: "#000",
-        shadowOffset: {
-            width: 0,
-            height: 5,
-        },
-        shadowOpacity: 0.9,
     },
     backgroundShape: {
         width: '100%',
@@ -53,6 +47,34 @@ const styles = StyleSheet.create({
         textAlign: 'center',
         width: '100%',
         color: 'white',
+    },
+    thinText: {
+        color: 'white',
+        fontFamily: 'Lato-Thin',
+        fontSize: 22,
+        marginLeft: 50,
+        marginBottom: 10,
+    },
+    fatText: {
+        color: 'white',
+        fontFamily: 'Lato-Bold',
+        fontSize: 30,
+        shadowColor: "#000",
+        shadowOffset: {
+            width: 0,
+            height: 0,
+        },
+        shadowOpacity: 0.6,
+        marginBottom: 30,
+        textAlign: 'center',
+    },
+    footerText: {
+        color: '#778795',
+        textAlign: 'center',
+        marginHorizontal: 80,
+        fontFamily: 'Lato-Light',
+        fontSize: 20,
+        marginTop: 5,
     },
 })
 

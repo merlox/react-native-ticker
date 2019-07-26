@@ -34,10 +34,9 @@ export default class App extends React.Component {
                         <Text style={styles.mainTitle}>Crypto Ticker</Text>
                         <Image style={styles.backgroundShape} source={require('./assets/shape-start.png')}></Image>
                         <Picker
+                            selectedValue={this.state.selectedCoin}
                             onValueChange={(itemValue, itemIndex) => {
-                                this.setState({selectedCoin: itemValue}, () => {
-                                    console.log(this.state)
-                                })
+                                this.setState({selectedCoin: itemValue})
                             }}
                             itemStyle={styles.coinPickerItem}
                             style={styles.coinPicker}
@@ -49,19 +48,19 @@ export default class App extends React.Component {
 
                         <View style={styles.textsContainer}>
                             <View>
-                                <Text>Latest price in USD</Text>
-                                <Text>$ 9,283</Text>
+                                <Text style={styles.thinText}>Latest price in USD</Text>
+                                <Text style={styles.fatText}>$ 9,283</Text>
                             </View>
                             <View>
-                                <Text>24h volume in USD</Text>
-                                <Text>$ 7,155,680,000</Text>
+                                <Text style={styles.thinText}>24h volume in USD</Text>
+                                <Text style={styles.fatText}>$ 7,155,680,000</Text>
                             </View>
                             <View>
-                                <Text>24h change</Text>
-                                <Text>0.51</Text>
+                                <Text style={styles.thinText}>24h change</Text>
+                                <Text style={styles.fatText}>0.51</Text>
                             </View>
                             <View>
-                                <Text>Crypto ticker updates the price of your favorite
+                                <Text style={styles.footerText}>Crypto ticker updates the price of your favorite
                                 cryptocurrencies in real-time every 5 seconds</Text>
                             </View>
                         </View>
