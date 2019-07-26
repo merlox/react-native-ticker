@@ -39,14 +39,15 @@ export default class App extends React.Component {
                                     console.log(this.state)
                                 })
                             }}
-                            itemStyle={styles.coinPicker}
+                            itemStyle={styles.coinPickerItem}
+                            style={styles.coinPicker}
                         >
                             <Picker.Item label="BTC bitcoin" value="BTC" />
                             <Picker.Item label="ETH ethereum" value="ETH" />
                             <Picker.Item label="DOGE dogecoin" value="DOGE" />
                         </Picker>
 
-                        <View>
+                        <View style={styles.textsContainer}>
                             <View>
                                 <Text>Latest price in USD</Text>
                                 <Text>$ 9,283</Text>

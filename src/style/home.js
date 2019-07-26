@@ -1,6 +1,11 @@
-import {StyleSheet} from 'react-native'
-
+import {StyleSheet, Dimensions} from 'react-native'
 const styles = StyleSheet.create({
+    mainContainer: {
+        flex: 1,
+        flexDirection: 'column',
+        backgroundColor: '#4c5760',
+        height: 500,
+    },
     mainTitle: {
         color: 'white',
         fontFamily: 'Lato-Thin',
@@ -9,14 +14,12 @@ const styles = StyleSheet.create({
         top: 70,
         textAlign: 'center',
         zIndex: 1,
-    },
-    mainContainer: {
-        flex: 1,
-        flexDirection: 'column',
-        justifyContent: 'space-between',
-        backgroundColor: '#4c5760',
-        height: 500,
-        textAlign: 'center',
+        shadowColor: "#000",
+        shadowOffset: {
+            width: 0,
+            height: 5,
+        },
+        shadowOpacity: 0.9,
     },
     backgroundShape: {
         width: '100%',
@@ -24,9 +27,33 @@ const styles = StyleSheet.create({
         position: 'absolute',
         top: 0,
     },
-    coinPicker: {
+    coinPickerItem: {
+        borderRadius: 5,
+        position: 'relative',
+        left: '30%',
+        marginTop: 90,
+        margin: 'auto',
+        backgroundColor: '#a59e8c',
+        height: 50,
+        width: 150,
         color: 'white',
-    }
+    },
+    coinPicker: {
+        zIndex: 999,
+        shadowColor: "#000",
+        shadowOffset: {
+            width: 0,
+            height: 0,
+        },
+        shadowOpacity: 0.6,
+        elevation: 14,
+    },
+    textsContainer: {
+        marginTop: 50,
+        textAlign: 'center',
+        width: '100%',
+        color: 'white',
+    },
 })
 
 export default styles
