@@ -28,17 +28,18 @@ export default class App extends React.Component {
 
     render() {
         return (
-            <View>
+            <View style={styles.mainContainer}>
                 {this.state.fontLoaded ? (
-                    <View style={styles.mainContainer}>
-                        <Text>Crypto Ticker Two</Text>
-                        <Image style={{width: '100%', height: 200}} source={require('./assets/shape-start.png')}></Image>
+                    <View>
+                        <Text style={styles.mainTitle}>Crypto Ticker</Text>
+                        <Image style={styles.backgroundShape} source={require('./assets/shape-start.png')}></Image>
                         <Picker
                             onValueChange={(itemValue, itemIndex) => {
                                 this.setState({selectedCoin: itemValue}, () => {
                                     console.log(this.state)
                                 })
                             }}
+                            itemStyle={styles.coinPicker}
                         >
                             <Picker.Item label="BTC bitcoin" value="BTC" />
                             <Picker.Item label="ETH ethereum" value="ETH" />
