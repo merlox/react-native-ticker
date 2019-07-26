@@ -31,8 +31,8 @@ export default class App extends React.Component {
             <View>
                 {this.state.fontLoaded ? (
                     <View style={styles.mainContainer}>
-                        {/*<Image style={{width: '100%', height: 100}} source={require('./assets/shape-start.png')}></Image>*/}
-                        <Text style={styles.mainTitle}>Crypto Ticker</Text>
+                        <Text>Crypto Ticker Two</Text>
+                        <Image style={{width: '100%', height: 200}} source={require('./assets/shape-start.png')}></Image>
                         <Picker
                             onValueChange={(itemValue, itemIndex) => {
                                 this.setState({selectedCoin: itemValue}, () => {

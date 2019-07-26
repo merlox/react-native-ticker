@@ -1,10 +1,11 @@
 import React from 'react'
-import { Text, View } from 'react-native'
+import { Text } from 'react-native'
 
 class Lato extends React.Component {
     render () {
+            console.log('hiiiiii'+this.props.children)
         return (
-            <Text {...this.props}>{this.props.children}</Text>
+            <Text>{this.props.children}</Text>
         )
     }
 }
