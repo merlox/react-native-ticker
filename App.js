@@ -8,6 +8,7 @@ export default class App extends React.Component {
     state = {
         selectedCoin: 'BTC',
         fontLoaded: false,
+        isPriceUp: true,
     }
 
     constructor() {
@@ -41,9 +42,9 @@ export default class App extends React.Component {
                             itemStyle={styles.coinPickerItem}
                             style={styles.coinPicker}
                         >
-                            <Picker.Item label="BTC bitcoin" value="BTC" />
-                            <Picker.Item label="ETH ethereum" value="ETH" />
-                            <Picker.Item label="DOGE dogecoin" value="DOGE" />
+                            <Picker.Item label="▸ BTC bitcoin" value="BTC" />
+                            <Picker.Item label="▸ ETH ethereum" value="ETH" />
+                            <Picker.Item label="▸ DOGE dogecoin" value="DOGE" />
                         </Picker>
 
                         <View style={styles.textsContainer}>
@@ -57,7 +58,7 @@ export default class App extends React.Component {
                             </View>
                             <View>
                                 <Text style={styles.thinText}>24h change</Text>
-                                <Text style={styles.fatText}>0.51</Text>
+                                <Text style={this.state.isPriceUp ? ([styles.fatText, styles.greenText]) : ([styles.fatText, styles.redText])}><Text style={styles.smallArrow}>↑</Text>0.51</Text>
                             </View>
                             <View>
                                 <Text style={styles.footerText}>Crypto ticker updates the price of your favorite

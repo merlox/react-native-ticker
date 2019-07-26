@@ -11,9 +11,12 @@ const styles = StyleSheet.create({
         fontFamily: 'Lato-Thin',
         fontSize: 50,
         position: 'relative',
-        top: 70,
+        top: 60,
         textAlign: 'center',
         zIndex: 1,
+    },
+    boldText: {
+        fontFamily: 'Lato-Bold',
     },
     backgroundShape: {
         width: '100%',
@@ -23,14 +26,12 @@ const styles = StyleSheet.create({
     },
     coinPickerItem: {
         borderRadius: 5,
-        position: 'relative',
-        left: '30%',
-        marginTop: 90,
+        marginTop: 85,
         margin: 'auto',
         backgroundColor: '#a59e8c',
         height: 50,
-        width: 150,
         color: 'white',
+        marginHorizontal: 70,
     },
     coinPicker: {
         zIndex: 999,
@@ -67,6 +68,7 @@ const styles = StyleSheet.create({
         shadowOpacity: 0.6,
         marginBottom: 30,
         textAlign: 'center',
+        position: 'relative',
     },
     footerText: {
         color: '#778795',
@@ -75,6 +77,15 @@ const styles = StyleSheet.create({
         fontFamily: 'Lato-Light',
         fontSize: 20,
         marginTop: 5,
+    },
+    smallArrow: {
+        fontSize: 22,
+    },
+    greenText: {
+        color: '#4fee57',
+    },
+    redText: {
+        color: '#ee4f4f',
     },
 })
 
