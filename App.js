@@ -112,7 +112,7 @@ export default class App extends React.Component {
 
                             <View>
                                 <Text style={styles.footerText}>Crypto ticker updates the price of your favorite
-                                cryptocurrencies in real-time every 10 seconds</Text>
+                                cryptocurrencies in real time every 10 seconds</Text>
                             </View>
                         </View>
                     </View>
