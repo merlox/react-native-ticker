@@ -34,7 +34,7 @@ const styles = StyleSheet.create({
         marginHorizontal: 70,
     },
     coinPicker: {
-        zIndex: 999,
+        zIndex: 2,
         shadowColor: "#000",
         shadowOffset: {
             width: 0,
@@ -86,6 +86,15 @@ const styles = StyleSheet.create({
     },
     redText: {
         color: '#ee4f4f',
+    },
+    pickerTouchable: {
+        zIndex: 30,
+        position: 'absolute',
+        width: '100%',
+        height: '100%',
+        marginTop: 85,
+        height: 170,
+        opacity: 0,
     },
 })
 

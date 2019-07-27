@@ -1,5 +1,5 @@
 import React from 'react'
-import { View, Picker, ActivityIndicator, Image } from 'react-native'
+import { View, Picker, ActivityIndicator, Image, Alert, TouchableHighlight } from 'react-native'
 import * as Font from 'expo-font'
 import Text from './src/components/Lato'
 import styles from './src/style/home'
@@ -9,6 +9,10 @@ export default class App extends React.Component {
         selectedCoin: 'BTC',
         fontLoaded: false,
         isPriceUp: true,
+        animatePicker: false,
+        selectedIndex: 0,
+        jsonItems: [],
+        pickerItems: [],
     }
 
     constructor() {
@@ -23,43 +27,87 @@ export default class App extends React.Component {
             'Lato-Regular': require('./assets/fonts/Lato-Regular.ttf'),
             'Lato-Thin': require('./assets/fonts/Lato-Thin.ttf'),
         })
-
         this.setState({fontLoaded: true})
+        this.getInitialData()
+    }
+
+    numberWithCommas(x) {
+        return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")
+    }
+
+    async getInitialData() {
+        const request = await fetch('https://pro-api.coinmarketcap.com/v1/cryptocurrency/listings/latest?CMC_PRO_API_KEY=ecb292f4-0e05-4717-815f-f2bc346aa7c7')
+        const json = await request.json()
+        let jsonItems = []
+        const pickerItems = json.data.map((item, index) => {
+            const jsonItem = {
+                name: item.name,
+                price: Math.round(item.quote.USD.price) > 0 ? this.numberWithCommas(item.quote.USD.price.toFixed(2)) : item.quote.USD.price.toFixed(5),
+                marketCap: Math.round(item.quote.USD.market_cap) > 0 ? this.numberWithCommas(item.quote.USD.market_cap.toFixed(2)) : item.quote.USD.market_cap.toFixed(5),
+                volume24: Math.round(item.quote.USD.volume_24h) > 0 ? this.numberWithCommas(item.quote.USD.volume_24h.toFixed(2)) : item.quote.USD.volume_24h.toFixed(5),
+                percentage24: item.quote.USD.percent_change_24h.toFixed(2),
+                isPercentageDown: item.quote.USD.percent_change_24h > 0 ? false : true,
+            }
+            jsonItems.push(jsonItem)
+            return (<Picker.Item label={'▸ ' + item.name} value={item.name} key={item + index} />)
+        })
+
+        this.setState({jsonItems, pickerItems})
+        // console.log('Json', json.data[0], json.data[1].quote.USD.price)
     }
 
     render() {
+
         return (
             <View style={styles.mainContainer}>
                 {this.state.fontLoaded ? (
                     <View>
                         <Text style={styles.mainTitle}>Crypto Ticker</Text>
                         <Image style={styles.backgroundShape} source={require('./assets/shape-start.png')}></Image>
+
                         <Picker
                             selectedValue={this.state.selectedCoin}
                             onValueChange={(itemValue, itemIndex) => {
-                                this.setState({selectedCoin: itemValue})
+                                this.setState({selectedCoin: itemValue, selectedIndex: itemIndex})
                             }}
                             itemStyle={styles.coinPickerItem}
                             style={styles.coinPicker}
                         >
-                            <Picker.Item label="▸ BTC bitcoin" value="BTC" />
-                            <Picker.Item label="▸ ETH ethereum" value="ETH" />
-                            <Picker.Item label="▸ DOGE dogecoin" value="DOGE" />
+                            {this.state.pickerItems}
                         </Picker>
 
                         <View style={styles.textsContainer}>
                             <View>
                                 <Text style={styles.thinText}>Latest price in USD</Text>
-                                <Text style={styles.fatText}>$ 9,283</Text>
+                                <Text style={styles.fatText}>{
+                                    this.state.jsonItems.length > 0 ?
+                                    '$ ' + this.state.jsonItems[this.state.selectedIndex].price : 'Loading...'}</Text>
                             </View>
                             <View>
-                                <Text style={styles.thinText}>24h volume in USD</Text>
-                                <Text style={styles.fatText}>$ 7,155,680,000</Text>
+                                <Text style={styles.thinText}>Marketcap in USD</Text>
+                                <Text style={styles.fatText}>{
+                                    this.state.jsonItems.length > 0 ?
+                                    '$ ' + this.state.jsonItems[this.state.selectedIndex].marketCap : 'Loading...'}</Text>
                             </View>
                             <View>
-                                <Text style={styles.thinText}>24h change</Text>
-                                <Text style={this.state.isPriceUp ? ([styles.fatText, styles.greenText]) : ([styles.fatText, styles.redText])}><Text style={styles.smallArrow}>↑</Text>0.51</Text>
+                                <Text style={styles.thinText}>Volume 24 hours in USD</Text>
+                                <Text style={styles.fatText}>{
+                                    this.state.jsonItems.length > 0 ?
+                                    '$ ' + this.state.jsonItems[this.state.selectedIndex].volume24 : 'Loading...'}</Text>
                             </View>
+                            <View>
+                                <Text style={styles.thinText}>Percentage 24h change</Text>
+                                <Text style={
+                                    this.state.jsonItems.length > 0 ?
+                                    (this.state.jsonItems[this.state.selectedIndex].isPercentageDown ? [styles.fatText, styles.redText] : [styles.fatText, styles.greenText]) : styles.fatText
+                                }>
+                                {
+                                    this.state.jsonItems.length > 0 ?
+                                    this.state.jsonItems[this.state.selectedIndex].percentage24 + '%' : 'Loading...'
+                                }
+                                </Text>
+                            </View>
+
                             <View>
                                 <Text style={styles.footerText}>Crypto ticker updates the price of your favorite
                                 cryptocurrencies in real-time every 5 seconds</Text>
