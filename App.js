@@ -1,5 +1,5 @@
 import React from 'react'
-import { View, Picker, ActivityIndicator, Image, Alert, TouchableHighlight } from 'react-native'
+import { View, ScrollView, Picker, ActivityIndicator, Image, Alert, TouchableHighlight } from 'react-native'
 import * as Font from 'expo-font'
 import Text from './src/components/Lato'
 import styles from './src/style/home'
@@ -78,7 +78,7 @@ export default class App extends React.Component {
                             {this.state.pickerItems}
                         </Picker>
 
-                        <View style={styles.textsContainer}>
+                        <ScrollView style={styles.textsContainer}>
                             <View>
                                 <Text style={styles.thinText}>Latest price in USD</Text>
                                 <Text style={styles.fatText}>{
@@ -112,9 +112,9 @@ export default class App extends React.Component {
 
                             <View>
                                 <Text style={styles.footerText}>Crypto ticker updates the price of your favorite
-                                cryptocurrencies in real time every 10 seconds</Text>
+                                crypto currencies in real time every 10 seconds. App created by merunas.io.</Text>
                             </View>
-                        </View>
+                        </ScrollView>
                     </View>
                 ) : (
                     <ActivityIndicator size="large" />

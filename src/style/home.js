@@ -73,10 +73,9 @@ const styles = StyleSheet.create({
     footerText: {
         color: '#778795',
         textAlign: 'center',
-        marginHorizontal: 80,
+        marginHorizontal: 50,
         fontFamily: 'Lato-Light',
         fontSize: 20,
-        marginTop: 5,
     },
     smallArrow: {
         fontSize: 22,
