@@ -28,14 +28,17 @@ export default class App extends React.Component {
             'Lato-Thin': require('./assets/fonts/Lato-Thin.ttf'),
         })
         this.setState({fontLoaded: true})
-        this.getInitialData()
+        this.getData()
+        setInterval(() => {
+            this.getData()
+        }, 10e3)
     }
 
     numberWithCommas(x) {
         return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")
     }
 
-    async getInitialData() {
+    async getData() {
         const request = await fetch('https://pro-api.coinmarketcap.com/v1/cryptocurrency/listings/latest?CMC_PRO_API_KEY=ecb292f4-0e05-4717-815f-f2bc346aa7c7')
         const json = await request.json()
         let jsonItems = []
@@ -53,7 +56,6 @@ export default class App extends React.Component {
         })
 
         this.setState({jsonItems, pickerItems})
-        // console.log('Json', json.data[0], json.data[1].quote.USD.price)
     }
 
     render() {
@@ -110,7 +112,7 @@ export default class App extends React.Component {
 
                             <View>
                                 <Text style={styles.footerText}>Crypto ticker updates the price of your favorite
-                                cryptocurrencies in real-time every 5 seconds</Text>
+                                cryptocurrencies in real-time every 10 seconds</Text>
                             </View>
                         </View>
                     </View>
