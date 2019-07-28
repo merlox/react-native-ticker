@@ -1,17 +1,24 @@
 {
   "expo": {
-    "name": "Ticker",
-    "slug": "ticker",
+    "name": "CryptoTicker",
+    "icon": "./assets/icon.png",
+    "version": "1.0.0",
+    "slug": "cryptoticker",
     "privacy": "public",
     "sdkVersion": "33.0.0",
+    "ios": {
+        "bundleIdentifier": "com.merunas.cryptoticker",
+        "supportsTablet": true
+    },
+    "android": {
+        "package": "com.merunas.cryptoticker"
+    },
     "platforms": [
       "ios",
       "android",
       "web"
     ],
-    "version": "1.0.0",
     "orientation": "portrait",
-    "icon": "./assets/icon.png",
     "splash": {
       "image": "./assets/splash.png",
       "resizeMode": "contain",
@@ -22,9 +29,6 @@
     },
     "assetBundlePatterns": [
       "**/*"
-    ],
-    "ios": {
-      "supportsTablet": true
-    }
+    ]
   }
 }
