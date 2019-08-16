@@ -4,6 +4,7 @@ const styles = StyleSheet.create({
         flex: 1,
         flexDirection: 'column',
         backgroundColor: '#4c5760',
+        width: '100%',
         height: 500,
     },
     mainTitle: {
@@ -19,10 +20,10 @@ const styles = StyleSheet.create({
         fontFamily: 'Lato-Bold',
     },
     backgroundShape: {
-        width: '100%',
+        width: null,
+        resizeMode: 'stretch',
         height: 220,
-        position: 'absolute',
-        top: 0,
+        marginTop: -60,
     },
     coinPickerItem: {
         borderRadius: 5,
@@ -94,6 +95,11 @@ const styles = StyleSheet.create({
         marginTop: 85,
         height: 170,
         opacity: 0,
+    },
+    innerContainer: {
+        width: '100%',
+        top: 100,
+        position: 'absolute',
     },
 })
 

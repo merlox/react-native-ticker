@@ -67,54 +67,56 @@ export default class App extends React.Component {
                         <Text style={styles.mainTitle}>Crypto Ticker</Text>
                         <Image style={styles.backgroundShape} source={require('./assets/shape-start.png')}></Image>
 
-                        <Picker
-                            selectedValue={this.state.selectedCoin}
-                            onValueChange={(itemValue, itemIndex) => {
-                                this.setState({selectedCoin: itemValue, selectedIndex: itemIndex})
-                            }}
-                            itemStyle={styles.coinPickerItem}
-                            style={styles.coinPicker}
-                        >
-                            {this.state.pickerItems}
-                        </Picker>
+                        <View style={styles.innerContainer}>
+                            <Picker
+                                selectedValue={this.state.selectedCoin}
+                                onValueChange={(itemValue, itemIndex) => {
+                                    this.setState({selectedCoin: itemValue, selectedIndex: itemIndex})
+                                }}
+                                itemStyle={styles.coinPickerItem}
+                                style={styles.coinPicker}
+                            >
+                                {this.state.pickerItems}
+                            </Picker>
 
-                        <ScrollView style={styles.textsContainer}>
-                            <View>
-                                <Text style={styles.thinText}>Latest price in USD</Text>
-                                <Text style={styles.fatText}>{
-                                    this.state.jsonItems.length > 0 ?
-                                    '$ ' + this.state.jsonItems[this.state.selectedIndex].price : 'Loading...'}</Text>
-                            </View>
-                            <View>
-                                <Text style={styles.thinText}>Marketcap in USD</Text>
-                                <Text style={styles.fatText}>{
-                                    this.state.jsonItems.length > 0 ?
-                                    '$ ' + this.state.jsonItems[this.state.selectedIndex].marketCap : 'Loading...'}</Text>
-                            </View>
-                            <View>
-                                <Text style={styles.thinText}>Volume 24 hours in USD</Text>
-                                <Text style={styles.fatText}>{
-                                    this.state.jsonItems.length > 0 ?
-                                    '$ ' + this.state.jsonItems[this.state.selectedIndex].volume24 : 'Loading...'}</Text>
-                            </View>
-                            <View>
-                                <Text style={styles.thinText}>Percentage 24h change</Text>
-                                <Text style={
-                                    this.state.jsonItems.length > 0 ?
-                                    (this.state.jsonItems[this.state.selectedIndex].isPercentageDown ? [styles.fatText, styles.redText] : [styles.fatText, styles.greenText]) : styles.fatText
-                                }>
-                                {
-                                    this.state.jsonItems.length > 0 ?
-                                    this.state.jsonItems[this.state.selectedIndex].percentage24 + '%' : 'Loading...'
-                                }
-                                </Text>
-                            </View>
+                            <ScrollView style={styles.textsContainer}>
+                                <View>
+                                    <Text style={styles.thinText}>Latest price in USD</Text>
+                                    <Text style={styles.fatText}>{
+                                        this.state.jsonItems.length > 0 ?
+                                        '$ ' + this.state.jsonItems[this.state.selectedIndex].price : 'Loading...'}</Text>
+                                </View>
+                                <View>
+                                    <Text style={styles.thinText}>Marketcap in USD</Text>
+                                    <Text style={styles.fatText}>{
+                                        this.state.jsonItems.length > 0 ?
+                                        '$ ' + this.state.jsonItems[this.state.selectedIndex].marketCap : 'Loading...'}</Text>
+                                </View>
+                                <View>
+                                    <Text style={styles.thinText}>Volume 24 hours in USD</Text>
+                                    <Text style={styles.fatText}>{
+                                        this.state.jsonItems.length > 0 ?
+                                        '$ ' + this.state.jsonItems[this.state.selectedIndex].volume24 : 'Loading...'}</Text>
+                                </View>
+                                <View>
+                                    <Text style={styles.thinText}>Percentage 24h change</Text>
+                                    <Text style={
+                                        this.state.jsonItems.length > 0 ?
+                                        (this.state.jsonItems[this.state.selectedIndex].isPercentageDown ? [styles.fatText, styles.redText] : [styles.fatText, styles.greenText]) : styles.fatText
+                                    }>
+                                    {
+                                        this.state.jsonItems.length > 0 ?
+                                        this.state.jsonItems[this.state.selectedIndex].percentage24 + '%' : 'Loading...'
+                                    }
+                                    </Text>
+                                </View>
 
-                            <View>
-                                <Text style={styles.footerText}>Crypto ticker updates the price of your favorite
-                                crypto currencies in real time every 10 seconds. App created by merunas.io.</Text>
-                            </View>
-                        </ScrollView>
+                                <View>
+                                    <Text style={styles.footerText}>Crypto ticker updates the price of your favorite
+                                    crypto currencies in real time every 10 seconds. App created by merunas.io.</Text>
+                                </View>
+                            </ScrollView>
+                        </View>
                     </View>
                 ) : (
                     <ActivityIndicator size="large" />
